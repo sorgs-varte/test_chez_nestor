@@ -41,8 +41,6 @@ exports.createApartment = function (req, res) {
             let _u = new Apartement(apartment);
             _u.save(function (err, apart) {
                 if (err) {
-                    console.log('fail saving');
-                    console.log(err);
                     res.status(500).json({
                         "text": "Erreur interne"
                     })
@@ -56,7 +54,6 @@ exports.createApartment = function (req, res) {
         }, function (error) {
             switch (error) {
                 case 500:
-                    console.log('fail find one');
                     res.status(500).json({
                         "text": "Erreur interne"
                     });

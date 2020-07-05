@@ -20,8 +20,6 @@ function validateDate(dateIn, dateOut, reservs) {
         for(let y = 0; y < countDay(new Date(reservs[i].dateIn), new Date(reservs[i].dateOut)); y++){
             let reservDateIn = new Date(reservs[i].dateIn);
             reservDateIn.setDate( reservDateIn.getDate() + y);
-            console.log(reservDateIn);
-            console.log(clientDateIn);
             if(clientDateIn.getTime() === reservDateIn.getTime() 
             || clientDateOut.getTime() === reservDateIn.getTime()){
                 return true;

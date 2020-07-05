@@ -90,7 +90,6 @@ exports.updateClient = function(req, res){
 };
 
 exports.login = function (req, res) {
-    //console.log(req.body);
     if (!req.body.email || !req.body.password) {
         //Le cas où l'email ou bien le password ne serait pas soumit ou nul
         res.status(400).json({
@@ -129,7 +128,6 @@ exports.login = function (req, res) {
     }
 };
 exports.signup = function(req, res) {
-    //console.log(req.body);
     if (!req.body.email ||
         !req.body.password ||
         !req.body.firstname ||
@@ -171,8 +169,6 @@ exports.signup = function(req, res) {
             let _u = new Client(client);
             _u.save(function (err, client) {
                 if (err) {
-                    console.log('fail saving');
-                    console.log(err);
                     res.status(500).json({
                         "text": "Erreur interne"
                     })
@@ -188,7 +184,6 @@ exports.signup = function(req, res) {
         }, function (error) {
             switch (error) {
                 case 500:
-                    console.log('fail find one');
                     res.status(500).json({
                         "text": "Erreur interne"
                     });
