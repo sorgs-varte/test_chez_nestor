@@ -1,6 +1,7 @@
 const routeTest = require('./controller/routeTest');
 const ClientController = require('./controller/ClientController');
 const ApartmentController = require('./controller/ApartmentController');
+const RoomController = require("./controller/RoomController");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -44,5 +45,11 @@ module.exports = function (app, io) {
     app.post("/apartment/create", requireAuth, ApartmentController.createApartment);
     app.put("/apartment/update", requireAuth, ApartmentController.updateApartment);
     app.delete("/apartment/delete", requireAuth, ApartmentController.deleteApartment);
+
+    app.get("/room/getall", requireAuth, RoomController.getAllRoom);
+    app.post("/room/getone", requireAuth, RoomController.getOneRoom);
+    app.post("/room/create", requireAuth, RoomController.createRoom);
+    app.put("/room/update", requireAuth, RoomController.updateRoom);
+    app.delete("/room/delete", requireAuth, RoomController.deleteRoom);
 
 };
