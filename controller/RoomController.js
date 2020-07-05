@@ -11,8 +11,7 @@ exports.createRoom = (req, res)=>{
         let room = {
             number : req.body.number,
             area : req.body.area,
-            price : req.body.price,
-            free : true
+            price : req.body.price
         };
 
         let _r = new Room(room);
