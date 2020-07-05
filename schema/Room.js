@@ -9,9 +9,6 @@ var roomSchema = mongoose.Schema({
     },
     price : {
         type : Number
-    }, 
-    free : {
-        type : Boolean
     }
 },{ timestamps: { createdAt: 'created_at' }
 });

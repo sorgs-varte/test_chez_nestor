@@ -53,8 +53,9 @@ module.exports = function (app, io) {
     app.delete("/room/delete", requireAuth, RoomController.deleteRoom);
 
     app.get("/reservation/getall", requireAuth, ReservationController.getAllReservation);
-    app.post("/reservation/getone", requireAuth, ReservationController.getoneReservation);
+    app.post("/reservation/getone", requireAuth, ReservationController.getOneReservation);
     app.post("/reservation/create", requireAuth, ReservationController.createReservation);
     app.put("/reservation/update", requireAuth, ReservationController.updateReservation);
     app.delete("/reservation/delete", requireAuth, ReservationController.deleteReservation);
+    app.post("/reservation/getwithoneroom", requireAuth, ReservationController.getReservationForOneRoom);
 };
