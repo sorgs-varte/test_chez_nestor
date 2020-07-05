@@ -1,12 +1,15 @@
 const Apartement = require("../schema/Apartment");
-
+const Room = require("../schema/Room");
 
 exports.createApartment = function (req, res) {
     if(!req.body.name 
         || !req.body.street_number 
         || !req.body.street 
         || ! req.body.zipcode
-        || !req.body.city){
+        || !req.body.city
+        || !req.body.number 
+        || !req.body.area 
+        || !req.body.price){
             res.status(400).json({"text":"bad request"});
     }else{
         let apartment = {
@@ -38,19 +41,31 @@ exports.createApartment = function (req, res) {
         });
 
         findApartment.then(function () {
-            let _u = new Apartement(apartment);
-            _u.save(function (err, apart) {
-                if (err) {
-                    res.status(500).json({
-                        "text": "Erreur interne"
-                    })
-                } else {
-                    res.status(200).json({
-                        "text": "Succès",
-                        "apartment" : apart
-                    });
-                }
-            })
+            let room = {
+                number : req.body.number,
+                area : req.body.area,
+                price : req.body.price
+            };
+    
+            let _r = new Room(room);
+            _r.save((err, room)=>{
+                if(err) res.status(500).json({"text": "Erreur interne"});
+
+                apartment.rooms.push(room._id.toString());
+                let _u = new Apartement(apartment);
+                _u.save(function (err2, apart) {
+                    if (err2) {
+                        res.status(500).json({
+                            "text": "Erreur interne"
+                        })
+                    } else {
+                        res.status(200).json({
+                            "text": "Succès",
+                            "apartment" : apart
+                        });
+                    }
+                });
+            });
         }, function (error) {
             switch (error) {
                 case 500:
