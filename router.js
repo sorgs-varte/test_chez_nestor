@@ -1,6 +1,7 @@
 const routeTest = require('./controller/routeTest');
 const ClientController = require('./controller/ClientController');
 const ApartmentController = require('./controller/ApartmentController');
+const ReservationController = require('./controller/ReservationController');
 const RoomController = require("./controller/RoomController");
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -39,7 +40,6 @@ module.exports = function (app, io) {
     app.post("/client/getone", requireAuth, ClientController.oneClient);
     app.get("/client/getall", requireAuth, ClientController.allClient);
 
-
     app.get("/apartment/getall", requireAuth, ApartmentController.getAllApartment);
     app.post("/apartment/getone", requireAuth, ApartmentController.getOneApartment);
     app.post("/apartment/create", requireAuth, ApartmentController.createApartment);
@@ -52,4 +52,9 @@ module.exports = function (app, io) {
     app.put("/room/update", requireAuth, RoomController.updateRoom);
     app.delete("/room/delete", requireAuth, RoomController.deleteRoom);
 
+    app.get("/reservation/getall", requireAuth, ReservationController.getAllReservation);
+    app.post("/reservation/getone", requireAuth, ReservationController.getoneReservation);
+    app.post("/reservation/create", requireAuth, ReservationController.createReservation);
+    app.put("/reservation/update", requireAuth, ReservationController.updateReservation);
+    app.delete("/reservation/delete", requireAuth, ReservationController.deleteReservation);
 };
